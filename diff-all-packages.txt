@@ -1,0 +1,1446 @@
+Only in challenges/AIS-Lite: cscope.files
+Only in challenges/AIS-Lite: cscope.out
+Only in challenges/AIS-Lite/lib: .malloc.c.swp
+diff -r challenges/AIS-Lite/src/sentence.c challenges-heap-related-orginal/AIS-Lite/src/sentence.c
+29,31c29
+< /* Jiaqi */
+< #include <stdio.h>
+< /* /Jiaqi */
+---
+> 
+97,100d94
+<     
+<     /* Jiaqi */
+<     printf ("p_buf: %p. end: %p. \n", p_buf, end);
+<     /* /Jiaqi */
+diff -r challenges/AIS-Lite/src/service.c challenges-heap-related-orginal/AIS-Lite/src/service.c
+29,32d28
+< /* Jiaqi */
+< #include <stdlib.h>
+< /* /Jiaqi */
+< 
+42c38
+<     ss.ais_msg = malloc(MAX_SENTENCE_LEN*sizeof(char));
+---
+>     ss.ais_msg = cgc_malloc(MAX_SENTENCE_LEN*sizeof(char));
+46,49c42,43
+<         // char *buf = calloc(MAX_SENTENCE_LEN*sizeof(char));
+<         // char *english = calloc(MAX_ENGLISH_LEN*sizeof(char));
+<         char *buf = calloc(MAX_SENTENCE_LEN, sizeof(char));
+<         char *english = calloc(MAX_ENGLISH_LEN, sizeof(char));
+---
+>         char *buf = cgc_calloc(MAX_SENTENCE_LEN*sizeof(char));
+>         char *english = cgc_calloc(MAX_ENGLISH_LEN*sizeof(char));
+83,84c77,78
+<         free(english);
+<         free(buf);
+---
+>         cgc_free(english);
+>         cgc_free(buf);
+Only in challenges/AIS-Lite/src: .sixer.c.swp
+diff -r challenges/anagram_game/lib/cgc_stdint.h challenges-heap-related-orginal/anagram_game/lib/cgc_stdint.h
+7c7
+< typedef long int int64_t;
+---
+> typedef long long int int64_t;
+12c12
+< typedef unsigned long int uint64_t;
+---
+> typedef unsigned long long int uint64_t;
+14,19c14,15
+< /* Jiaqi */
+< // typedef int intptr_t;
+< // typedef unsigned int uintptr_t;
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+< /* /Jiaqi */
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/anagram_game/lib/strdup.c challenges-heap-related-orginal/anagram_game/lib/strdup.c
+4d3
+< #include <stdlib.h>
+8,9c7
+<     // char *dup = cgc_malloc(n);
+<     char *dup = malloc(n);
+---
+>     char *dup = cgc_malloc(n);
+diff -r challenges/anagram_game/src/atree.c challenges-heap-related-orginal/anagram_game/src/atree.c
+23d22
+< #include <stdlib.h>
+37,38c36
+<     // tree = cgc_calloc(sizeof(atree_t), 1);
+<     tree = calloc(sizeof(atree_t), 1);
+---
+>     tree = cgc_calloc(sizeof(atree_t), 1);
+137,138c135
+<             // n = cgc_calloc(NODE_MIN_SIZE, 1);
+<             n = calloc(NODE_MIN_SIZE, 1);
+---
+>             n = cgc_calloc(NODE_MIN_SIZE, 1);
+167,168c164
+<                 // atree_node_t *n = cgc_realloc(node, sizeof(atree_node_t) + new_length * sizeof(node->children[0]));
+<                 atree_node_t *n = realloc(node, sizeof(atree_node_t) + new_length * sizeof(node->children[0]));
+---
+>                 atree_node_t *n = cgc_realloc(node, sizeof(atree_node_t) + new_length * sizeof(node->children[0]));
+203,204c199
+<         // *pnode = node = cgc_calloc(NODE_MIN_SIZE, 1);
+<         *pnode = node = calloc(NODE_MIN_SIZE, 1);
+---
+>         *pnode = node = cgc_calloc(NODE_MIN_SIZE, 1);
+257,258c252
+<         // node = cgc_realloc(node, sizeof(atree_node_t) + sizeof(const char *) * new_length);
+<         node = realloc(node, sizeof(atree_node_t) + sizeof(const char *) * new_length);
+---
+>         node = cgc_realloc(node, sizeof(atree_node_t) + sizeof(const char *) * new_length);
+326,327c320
+<         // result = cgc_calloc(sizeof(const char *), 1);
+<         result = calloc(sizeof(const char *), 1);
+---
+>         result = cgc_calloc(sizeof(const char *), 1);
+334,335c327
+<     // result = cgc_calloc(sizeof(const char *), node->degree + 1);
+<     result = calloc(sizeof(const char *), node->degree + 1);
+---
+>     result = cgc_calloc(sizeof(const char *), node->degree + 1);
+357,358c349
+<         // r = cgc_realloc(*results, c * sizeof(char *));
+<         r = realloc(*results, c * sizeof(char *));
+---
+>         r = cgc_realloc(*results, c * sizeof(char *));
+390,391c381
+<     // char **results = cgc_malloc(sizeof(char *));
+<     char **results = malloc(sizeof(char *));
+---
+>     char **results = cgc_malloc(sizeof(char *));
+diff -r challenges/anagram_game/src/io.c challenges-heap-related-orginal/anagram_game/src/io.c
+23d22
+< #include <stdlib.h>
+113,114c112
+<     // result = cgc_malloc(size+1);
+<     result = malloc(size+1);
+---
+>     result = cgc_malloc(size+1);
+diff -r challenges/anagram_game/src/main.c challenges-heap-related-orginal/anagram_game/src/main.c
+23d22
+< #include <stdlib.h>
+61,62c60
+<     // words = cgc_malloc(sizeof(char *) * count);
+<     words = malloc(sizeof(char *) * count);
+---
+>     words = cgc_malloc(sizeof(char *) * count);
+109,110c107
+<             // cgc_free(str);
+<             free(str);
+---
+>             cgc_free(str);
+136,137c133
+<         // cgc_free(str);
+<         free(str);
+---
+>         cgc_free(str);
+171,172c167
+<         // cgc_free(str);
+<         free(str);
+---
+>         cgc_free(str);
+255,256c250
+<             // cgc_free(str);
+<             free(str);
+---
+>             cgc_free(str);
+259,260c253
+<         // cgc_free(answers);
+<         free(answers);
+---
+>         cgc_free(answers);
+Only in challenges/Audio_Visualizer: cscope.files
+Only in challenges/Audio_Visualizer: cscope.out
+diff -r challenges/Audio_Visualizer/lib/cgc_stdint.h challenges-heap-related-orginal/Audio_Visualizer/lib/cgc_stdint.h
+14,19c14,16
+< /* Jiaqi */
+< // typedef int intptr_t;
+< // typedef unsigned int uintptr_t;
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+< /* /Jiaqi */
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+> 
+diff -r challenges/Audio_Visualizer/lib/malloc.c challenges-heap-related-orginal/Audio_Visualizer/lib/malloc.c
+26,29d25
+< /* Jiaqi */
+< #include <stdio.h>
+< /* /Jiaqi */
+< 
+94,96d89
+<     // /* Jiaqi */
+<     // printf("invoke cgc_malloc, size: %lx. \n", size);
+<     // /* /Jiaqi */
+110,112d102
+<   // /* Jiaqi */
+<   // printf ("blk at: %p, sc_i: %d. size: 0x%x. \n", blk, sc_i, size);
+<   // /* /Jiaqi */
+123,126d112
+<   
+<   // /* Jiaqi */
+<   // printf ("================blk at: %p, sc_i: %d. size: 0x%x. \n", blk, sc_i, size);
+<   // /* /Jiaqi */
+134,138d119
+<     // /* Jiaqi */
+<     // printf ("/////////////////blk size: 0x%lx. \n", blk->size);
+<     // printf ("blk at: %p. memory reference at: %lx.  \n", blk, ((ulongptr_t)blk + size));
+<     // /* /Jiaqi */
+< 
+140d120
+<     // struct blk_t *nb = (struct blk_t *)((ulongptr_t)blk + size);
+diff -r challenges/Audio_Visualizer/src/dft.c challenges-heap-related-orginal/Audio_Visualizer/src/dft.c
+31,34d30
+< /* Jiaqi */
+< #include <stdlib.h>
+< /* /Jiaqi */
+< 
+39c35
+<         complex_t *xk = malloc(sizeof(complex_t));
+---
+>         complex_t *xk = cgc_malloc(sizeof(complex_t));
+45,46c41,42
+<     complex_t *e = malloc(sizeof(complex_t) * samples/2);
+<     complex_t *o = malloc(sizeof(complex_t) * samples/2);
+---
+>     complex_t *e = cgc_malloc(sizeof(complex_t) * samples/2);
+>     complex_t *o = cgc_malloc(sizeof(complex_t) * samples/2);
+56c52
+<     complex_t *Xk = malloc(sizeof(complex_t) * samples);
+---
+>     complex_t *Xk = cgc_malloc(sizeof(complex_t) * samples);
+69,72c65,68
+<     free(e);
+<     free(o);
+<     free(ek);
+<     free(ok);
+---
+>     cgc_free(e);
+>     cgc_free(o);
+>     cgc_free(ek);
+>     cgc_free(ok);
+78c74
+<     complex_t *coeff = malloc(sizeof(complex_t) * samples);
+---
+>     complex_t *coeff = cgc_malloc(sizeof(complex_t) * samples);
+88c84
+<     free(coeff);
+---
+>     cgc_free(coeff);
+102c98
+<         real_coeff_padded = malloc(sizeof(double) * samples);
+---
+>         real_coeff_padded = cgc_malloc(sizeof(double) * samples);
+112c108
+<         free(real_coeff_padded);
+---
+>         cgc_free(real_coeff_padded);
+136c132
+<         coeff_padded = malloc(sizeof(complex_t) * samples);
+---
+>         coeff_padded = cgc_malloc(sizeof(complex_t) * samples);
+149c145
+<         free(coeff_padded);
+---
+>         cgc_free(coeff_padded);
+161c157
+<     Xt = malloc(sizeof(double) * samples);
+---
+>     Xt = cgc_malloc(sizeof(double) * samples);
+163c159
+<         free(xt);
+---
+>         cgc_free(xt);
+171c167
+<     free(xt);
+---
+>     cgc_free(xt);
+diff -r challenges/Audio_Visualizer/src/uwfc.c challenges-heap-related-orginal/Audio_Visualizer/src/uwfc.c
+30,35d29
+< /* Jiaqi */
+< #include <stdio.h>
+< #include <stdlib.h>
+< // #include <assert.h>
+< /* /Jiaqi */
+< 
+128,130d121
+<     /* Jiaqi */
+<     // assert(1<0);
+<     /* /Jiaqi */
+143c134
+<     track = malloc(sizeof(uwfc_t));
+---
+>     track = cgc_malloc(sizeof(uwfc_t));
+148c139
+<         free(track);
+---
+>         cgc_free(track);
+152,154d142
+<     /* Jiaqi */
+<     // printf ("about to call cgc_validate_header. \n");
+<     /* /Jiaqi */
+163c151
+<         free(track);
+---
+>         cgc_free(track);
+170c158
+<         track->data = malloc(track_size);
+---
+>         track->data = cgc_malloc(track_size);
+172c160
+<             free(track);
+---
+>             cgc_free(track);
+180,181c168,169
+<             free(track->data);
+<             free(track);
+---
+>             cgc_free(track->data);
+>             cgc_free(track);
+197c185
+<         free(track->data);
+---
+>         cgc_free(track->data);
+200c188
+<         free(track);
+---
+>         cgc_free(track);
+356c344
+<     dft_inputs_l = malloc(track->sample_rate * sizeof(double));
+---
+>     dft_inputs_l = cgc_malloc(track->sample_rate * sizeof(double));
+361c349
+<         dft_inputs_r = malloc(track->sample_rate * sizeof(double));
+---
+>         dft_inputs_r = cgc_malloc(track->sample_rate * sizeof(double));
+438c426
+<         free(dft_output_l);
+---
+>         cgc_free(dft_output_l);
+441c429
+<             free(dft_output_r);
+---
+>             cgc_free(dft_output_r);
+diff -r challenges/CableGrind/include/cgc_stdint.h challenges-heap-related-orginal/CableGrind/include/cgc_stdint.h
+29c29
+< #define uint64_t unsigned long 
+---
+> #define uint64_t unsigned long long
+34,36c34,36
+< // #define int32_t int
+< // #define int16_t short
+< // #define int8_t char
+---
+> #define int32_t int
+> #define int16_t short
+> #define int8_t char
+diff -r challenges/CableGrind/lib/cgc_libc.h challenges-heap-related-orginal/CableGrind/lib/cgc_libc.h
+333c333
+< void *cgc_calloc(cgc_size_t size); 
+---
+> void *calloc(cgc_size_t size); 
+diff -r challenges/CableGrind/lib/libdupe.c challenges-heap-related-orginal/CableGrind/lib/libdupe.c
+23,24d22
+< #include <stdlib.h>
+< 
+49,50c47
+<     // pkt = cgc_malloc(sizeof(dupepkt_hdr_t)+f->framelen);
+<     pkt = malloc(sizeof(dupepkt_hdr_t)+f->framelen);
+---
+>     pkt = cgc_malloc(sizeof(dupepkt_hdr_t)+f->framelen);
+55,56c52
+<         // cgc_free(pkt);
+<         free(pkt);
+---
+>         cgc_free(pkt);
+65,66c61
+<         // cgc_free(pkt);
+<         free(pkt);
+---
+>         cgc_free(pkt);
+78,79c73
+<     // cgc_free(pkt);
+<     free(pkt);
+---
+>     cgc_free(pkt);
+83,84c77
+<     // cgc_free(f);
+<     free(f);
+---
+>     cgc_free(f);
+diff -r challenges/CableGrind/src/cgc_helpers.h challenges-heap-related-orginal/CableGrind/src/cgc_helpers.h
+28,29d27
+< #include <stdlib.h>
+< 
+207,208c205
+<     // s = cgc_malloc(length);
+<     s = malloc(length);
+---
+>     s = cgc_malloc(length);
+223,224c220
+<     // cgc_free(s);
+<     free(s);
+---
+>     cgc_free(s);
+diff -r challenges/CableGrind/src/service.c challenges-heap-related-orginal/CableGrind/src/service.c
+28,29d27
+< #include <stdlib.h>
+< 
+42,43c40
+<     // data = cgc_malloc(filesize);
+<     data = malloc(filesize);
+---
+>     data = cgc_malloc(filesize);
+Only in challenges/CGC_Board: cscope.files
+Only in challenges/CGC_Board: cscope.out
+diff -r challenges/CGC_Board/lib/cgc_stdint.h challenges-heap-related-orginal/CGC_Board/lib/cgc_stdint.h
+7c7
+< typedef long int int64_t;
+---
+> typedef long long int int64_t;
+12c12
+< typedef unsigned long int uint64_t;
+---
+> typedef unsigned long long int uint64_t;
+14,17c14,15
+< // typedef int intptr_t;
+< // typedef unsigned int uintptr_t;
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/CGC_Board/lib/strdup.c challenges-heap-related-orginal/CGC_Board/lib/strdup.c
+4,5d3
+< #include <stdlib.h>
+< 
+9,10c7
+<     // char *dup = cgc_malloc(n);
+<     char *dup = malloc(n);
+---
+>     char *dup = cgc_malloc(n);
+diff -r challenges/CGC_Board/src/engine.c challenges-heap-related-orginal/CGC_Board/src/engine.c
+23,26d22
+< 
+< #include <stdlib.h>
+< #include <stdio.h>
+< 
+201,204c197,198
+<         // cgc_free(engine->moves_buf);
+<         free(engine->moves_buf);
+<         // cgc_free(engine);
+<         free(engine);
+---
+>         cgc_free(engine->moves_buf);
+>         cgc_free(engine);
+213,214c207
+<     // engine = cgc_malloc(sizeof(engine_t));
+<     engine = malloc(sizeof(engine_t));
+---
+>     engine = cgc_malloc(sizeof(engine_t));
+220a214
+>     for (c = 0; c < 8; c++)
+222,262c216,237
+<         for (c = 0; c < 8; c++)
+<         {
+<             printf ("r: %d, c: %d. \n", r, c);
+<             // if (r >= 0 && r <= 7 && (c-1) >= 0 && (c-1) <= 7) 
+<             //     printf ("%x, \n", ((r) * 8 + (c-1)));
+<             // if (r >= 0 && r <= 7 && (c-1) >= 0 && (c-1) <= 7) 
+<             //     printf ("%x, \n", ((r) * 8 + (c-1)));
+<             bboard_t moves = 0;
+<             
+<             moves |= BIT_IF_VALID(r-2, c-1);
+<             printf ("moves: %lx. r-2: %d. c-1: %d. \n", moves, r-2, c-1);
+<             moves |= BIT_IF_VALID(r-1, c-2);
+<             printf ("moves: %lx. r-1: %d. c-2: %d. \n", moves, r-1, c-2);
+<             moves |= BIT_IF_VALID(r-2, c+1);
+<             moves |= BIT_IF_VALID(r-1, c+2);
+<             moves |= BIT_IF_VALID(r+2, c-1);
+<             moves |= BIT_IF_VALID(r+1, c-2);
+<             printf ("moves: %lx. r+2: %d. c+1: %d. \n", moves, r+2, c+1);
+<             moves |= BIT_IF_VALID(r+2, c+1);
+<             moves |= BIT_IF_VALID(r+1, c+2);
+<             printf ("1 end moves: %lx. r: %d. c-1: %d. \n", moves, r, c);
+< 
+<             KNIGHT_MOVES[r * 8 + c] = moves;
+< 
+<             moves = 0;
+<             printf ("moves: %lx. r-1: %d. c-1: %d. \n", moves, r-1, c-1);
+<             moves |= BIT_IF_VALID(r-1, c-1);
+<             printf ("moves: %lx. r-1: %d. c: %d. \n", moves, r-1, c-1);
+<             moves |= BIT_IF_VALID(r-1, c);
+<             printf ("moves: %lx. r-1: %d. c+1: %d. \n", moves, r-1, c-1);
+<             moves |= BIT_IF_VALID(r-1, c+1);
+<             /* Jiaqi */
+<             printf ("moves: %lx. r: %d. c-1: %d. \n", moves, r, c-1);
+<             if (r >= 0 && r <= 7 && (c-1) >= 0 && (c-1) <= 7) 
+<                 printf ("%x, \n", ((r) * 8 + (c-1)));
+<             /* /Jiaqi */
+<             moves |= BIT_IF_VALID(r, c-1);
+<             moves |= BIT_IF_VALID(r, c+1);
+<             moves |= BIT_IF_VALID(r+1, c-1);
+<             moves |= BIT_IF_VALID(r+1, c);
+<             moves |= BIT_IF_VALID(r+1, c+1);
+---
+>         bboard_t moves = 0;
+>         
+>         moves |= BIT_IF_VALID(r-2, c-1);
+>         moves |= BIT_IF_VALID(r-1, c-2);
+>         moves |= BIT_IF_VALID(r-2, c+1);
+>         moves |= BIT_IF_VALID(r-1, c+2);
+>         moves |= BIT_IF_VALID(r+2, c-1);
+>         moves |= BIT_IF_VALID(r+1, c-2);
+>         moves |= BIT_IF_VALID(r+2, c+1);
+>         moves |= BIT_IF_VALID(r+1, c+2);
+> 
+>         KNIGHT_MOVES[r * 8 + c] = moves;
+> 
+>         moves = 0;
+>         moves |= BIT_IF_VALID(r-1, c-1);
+>         moves |= BIT_IF_VALID(r-1, c);
+>         moves |= BIT_IF_VALID(r-1, c+1);
+>         moves |= BIT_IF_VALID(r, c-1);
+>         moves |= BIT_IF_VALID(r, c+1);
+>         moves |= BIT_IF_VALID(r+1, c-1);
+>         moves |= BIT_IF_VALID(r+1, c);
+>         moves |= BIT_IF_VALID(r+1, c+1);
+264,265c239
+<             KING_MOVES[r * 8 + c] = moves;
+<         }
+---
+>         KING_MOVES[r * 8 + c] = moves;
+283,284c257
+<     // engine->moves_buf = cgc_malloc(MAX_DEPTH * MAX_MOVES_PER_DEPTH * sizeof(move_t));
+<     engine->moves_buf = malloc(MAX_DEPTH * MAX_MOVES_PER_DEPTH * sizeof(move_t));
+---
+>     engine->moves_buf = cgc_malloc(MAX_DEPTH * MAX_MOVES_PER_DEPTH * sizeof(move_t));
+287,288c260
+<         // cgc_free(engine);
+<         free(engine);
+---
+>         cgc_free(engine);
+diff -r challenges/CGC_Board/src/io.c challenges-heap-related-orginal/CGC_Board/src/io.c
+23,25d22
+< 
+< #include <stdlib.h>
+< 
+109,110c106
+<     // char *buf = cgc_malloc(32);
+<     char *buf = malloc(32);
+---
+>     char *buf = cgc_malloc(32);
+Only in challenges/electronictrading: cscope.files
+Only in challenges/electronictrading: cscope.out
+Only in challenges/electronictrading: README.jq
+diff -r challenges/electronictrading/src/cgc_stock.h challenges-heap-related-orginal/electronictrading/src/cgc_stock.h
+63,65c63
+<     // unsigned int id, price, quantity;
+<     unsigned long id;
+<     unsigned int price, quantity;
+---
+>     unsigned int id, price, quantity;
+136,137c134
+< // int cgc_cmd_place_order(struct stock_state *state, const char *name, int type,
+< long cgc_cmd_place_order(struct stock_state *state, const char *name, int type,
+---
+> int cgc_cmd_place_order(struct stock_state *state, const char *name, int type,
+147,148c144
+< // int cgc_cmd_check_order(const struct stock_state *state, unsigned int id);
+< int cgc_cmd_check_order(const struct stock_state *state, unsigned long id);
+---
+> int cgc_cmd_check_order(const struct stock_state *state, unsigned int id);
+157,158c153
+< // int cgc_cmd_cancel_order(struct stock_state *state, unsigned int id);
+< int cgc_cmd_cancel_order(struct stock_state *state, unsigned long id);
+---
+> int cgc_cmd_cancel_order(struct stock_state *state, unsigned int id);
+diff -r challenges/electronictrading/src/service.c challenges-heap-related-orginal/electronictrading/src/service.c
+57,76c57,76
+<             case LIST_STOCKS:
+<                 cmd_ret = cgc_cmd_list_stocks(&state);
+<                 break;
+<             case LIST_ORDERS:
+<                 cmd_ret = cgc_cmd_list_orders(&state, (char *)&cmd.arg0);
+<                 break;
+<             case PLACE_ORDER:
+<                 cmd_ret = cgc_cmd_place_order(&state, (char *)&cmd.arg0, cmd.arg1,
+<                         cmd.arg2, cmd.arg3);
+<                 break;
+<             case CHECK_ORDER:
+<                 cmd_ret = cgc_cmd_check_order(&state, cmd.arg0);
+<                 break;
+<             case CANCEL_ORDER:
+<                 cmd_ret = cgc_cmd_cancel_order(&state, cmd.arg0);
+<                 break;
+<             case QUIT:
+<                 goto out;
+<             default:
+<                 cmd_ret = -1;
+---
+>         case LIST_STOCKS:
+>             cmd_ret = cgc_cmd_list_stocks(&state);
+>             break;
+>         case LIST_ORDERS:
+>             cmd_ret = cgc_cmd_list_orders(&state, (char *)&cmd.arg0);
+>             break;
+>         case PLACE_ORDER:
+>             cmd_ret = cgc_cmd_place_order(&state, (char *)&cmd.arg0, cmd.arg1,
+>                     cmd.arg2, cmd.arg3);
+>             break;
+>         case CHECK_ORDER:
+>             cmd_ret = cgc_cmd_check_order(&state, cmd.arg0);
+>             break;
+>         case CANCEL_ORDER:
+>             cmd_ret = cgc_cmd_cancel_order(&state, cmd.arg0);
+>             break;
+>         case QUIT:
+>             goto out;
+>         default:
+>             cmd_ret = -1;
+81c81
+< 
+---
+>    
+diff -r challenges/electronictrading/src/stock.c challenges-heap-related-orginal/electronictrading/src/stock.c
+23,27d22
+< /* Jiaqi */
+< #include <stdlib.h>
+< // #include <string.h>
+< /* /Jiaqi */
+< 
+100,101c95
+<     // cgc_pool_free(&state->stock_pool, stock);
+<     free(stock);
+---
+>     cgc_pool_free(&state->stock_pool, stock);
+112,114c106
+<     // if ((new = cgc_pool_alloc(&state->stock_pool)) == NULL)
+<     cgc_size_t size = MAX(sizeof(struct order), sizeof(struct stock));
+<     if ((new = malloc(size)) == NULL)
+---
+>     if ((new = cgc_pool_alloc(&state->stock_pool)) == NULL)
+141c133
+< cgc_lookup_order(const struct stock_state *state, unsigned long id)
+---
+> cgc_lookup_order(const struct stock_state *state, unsigned int id)
+192,193c184
+< // static int
+< static long
+---
+> static int
+274,275c265
+< // static unsigned int
+< static unsigned long
+---
+> static unsigned int
+281c271
+<     return (unsigned long)order;
+---
+>     return (unsigned int)order;
+284c274
+< static long
+---
+> static int
+304,306c294
+<     // if ((new = cgc_pool_alloc(&state->stock_pool)) == NULL)
+<     cgc_size_t size = MAX(sizeof(struct order), sizeof(struct stock));
+<     if ((new = malloc(size)) == NULL)
+---
+>     if ((new = cgc_pool_alloc(&state->stock_pool)) == NULL)
+353,354c341
+<     // cgc_strcpy(s, cgc_itoa(order->id, intbuf));
+<     sprintf(intbuf, "%lld", order->id);
+---
+>     cgc_strcpy(s, cgc_itoa(order->id, intbuf));
+365d351
+<         // cgc_strcat(s, ltoa(order->quantity, intbuf));
+368d353
+<         // cgc_strcat(s, ltoa(order->price, intbuf));
+373d357
+<         // cgc_strcat(s, ltoa(order->price, intbuf));
+376d359
+<         // cgc_strcat(s, ltoa(order->quantity, intbuf));
+477c460
+< long
+---
+> int
+485c468
+< cgc_cmd_check_order(const struct stock_state *state, unsigned long id)
+---
+> cgc_cmd_check_order(const struct stock_state *state, unsigned int id)
+495c478
+<     if (order->id != (unsigned long)order)
+---
+>     if (order->id != (unsigned int)order)
+508c491
+< cgc_cmd_cancel_order(struct stock_state *state, unsigned long id)
+---
+> cgc_cmd_cancel_order(struct stock_state *state, unsigned int id)
+Only in challenges/Enslavednode_chat: cscope.files
+Only in challenges/Enslavednode_chat: cscope.out
+diff -r challenges/Enslavednode_chat/lib/cgc_stdint.h challenges-heap-related-orginal/Enslavednode_chat/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/Enslavednode_chat/lib/strchr.c challenges-heap-related-orginal/Enslavednode_chat/lib/strchr.c
+30,32c30
+<     const char *p = s;
+<     
+<     printf ("==========s: %p, p:%p. \n", s, p);
+---
+>   const char *p = s;
+34,42c32,37
+<     while (*p)
+<     {
+<         if (*p == c)
+<         {
+<             printf ("s: %p, p:%p. \n", s, p);
+<             return (char *) p;
+<         }
+<         p++;
+<     }
+---
+>   while (*p)
+>   {
+>     if (*p == c)
+>       return (char *) p;
+>     p++;
+>   }
+44,45c39,40
+<     if (c == (int)NULL)
+<         return (char *)p;
+---
+>   if (c == (int)NULL)
+>     return (char *)p;
+47c42
+<     return NULL;
+---
+>   return NULL;
+diff -r challenges/Enslavednode_chat/lib/strdup.c challenges-heap-related-orginal/Enslavednode_chat/lib/strdup.c
+4,5d3
+< #include <stdlib.h>
+< 
+9,10c7
+<     // char *dup = cgc_malloc(n);
+<     char *dup = malloc(n);
+---
+>     char *dup = cgc_malloc(n);
+diff -r challenges/Enslavednode_chat/src/common.c challenges-heap-related-orginal/Enslavednode_chat/src/common.c
+29,31d28
+< // #include <stdlib.h>
+< #include <string.h>
+< 
+35,71c32,64
+<     char tmp[READ_SIZE + 1];
+<     // printf ("tmp addr: %p, sizeof tmp: %lx. \n", tmp, sizeof(tmp));
+<     cgc_size_t n;
+< 
+<     *nrx = 0;
+<     while (*nrx < max) {
+<         int ret = cgc_receive(fd, tmp, READ_SIZE, &n);
+< 
+<         // printf("n: %d, READ_SIZE: %d. \n", n, READ_SIZE);
+<         if (ret < 0) {
+<             return -1;
+<         } else if (ret == 0 && n == (cgc_size_t)NULL) {
+<             break;
+<         } else if (ret == 0 && n != (cgc_size_t)NULL) {
+<             // char *nl = cgc_strchr(tmp, '\n');
+<             char *nl = strchr(tmp, '\n');
+< 
+<             // just newline, i.e. input = "\n"
+<             if (*nrx == 0 && nl == tmp)
+<                 return -1;
+< 
+<             // found newline
+<             if (nl)
+<                 n = nl - tmp;
+< 
+<             // exceeded bounds, truncate
+<             if (*nrx + n > max)
+<                 n = max - *nrx;
+< 
+<             *nrx += n;
+<             cgc_memcpy(buf, tmp, n);
+<             buf += n;
+<             cgc_memset(tmp, '\0', READ_SIZE + 1);
+< 
+<             if (nl)
+<                 break;
+<         }
+---
+>   char tmp[READ_SIZE + 1];
+>   cgc_size_t n;
+> 
+>   *nrx = 0;
+>   while (*nrx < max) {
+>     int ret = cgc_receive(fd, tmp, READ_SIZE, &n);
+> 
+>     if (ret < 0) {
+>       return -1;
+>     } else if (ret == 0 && n == (cgc_size_t)NULL) {
+>       break;
+>     } else if (ret == 0 && n != (cgc_size_t)NULL) {
+>       char *nl = cgc_strchr(tmp, '\n');
+> 
+>       // just newline, i.e. input = "\n"
+>       if (*nrx == 0 && nl == tmp)
+>         return -1;
+> 
+>       // found newline
+>       if (nl)
+>         n = nl - tmp;
+> 
+>       // exceeded bounds, truncate
+>       if (*nrx + n > max)
+>         n = max - *nrx;
+> 
+>       *nrx += n;
+>       cgc_memcpy(buf, tmp, n);
+>       buf += n;
+>       cgc_memset(tmp, '\0', READ_SIZE + 1);
+> 
+>       if (nl)
+>         break;
+72a66
+>   }
+74c68
+<     return 0;
+---
+>   return 0;
+diff -r challenges/Enslavednode_chat/src/list.c challenges-heap-related-orginal/Enslavednode_chat/src/list.c
+24,25d23
+< #include <stdlib.h>
+< 
+36,37c34
+<   // list *new = cgc_calloc(1, sizeof(list));
+<   list *new = calloc(1, sizeof(list));
+---
+>   list *new = cgc_calloc(1, sizeof(list));
+160,161c157
+<       // cgc_free((void *)it->d);
+<       free((void *)it->d);
+---
+>       cgc_free((void *)it->d);
+163,164c159
+<       // cgc_free(it->p);
+<       free(it->p);
+---
+>       cgc_free(it->p);
+166,167c161
+<   // cgc_free((void *)it);
+<   free((void *)it);
+---
+>   cgc_free((void *)it);
+176,177c170
+<       // cgc_free(it->p);
+<       free(it->p);
+---
+>       cgc_free(it->p);
+179,181c172
+<   // cgc_free((void *)it);
+<   free((void *)it);
+<   free((void *)it);
+---
+>   cgc_free((void *)it);
+diff -r challenges/Enslavednode_chat/src/main.c challenges-heap-related-orginal/Enslavednode_chat/src/main.c
+24,27d23
+< #include <stdlib.h>
+< #include <stdio.h>
+< #include <string.h>
+< 
+68,69c64
+<   // char *r = cgc_calloc(1, cgc_strlen(s) + 1);
+<   char *r = calloc(1, cgc_strlen(s) + 1);
+---
+>   char *r = cgc_calloc(1, cgc_strlen(s) + 1);
+71,72c66
+<   // if (!cgc_strchr(r, '\0'))
+<   if (!strchr(r, '\0'))
+---
+>   if (!cgc_strchr(r, '\0'))
+76,77c70
+<   // char *end = cgc_strchr(r, '\0') - 1;
+<   char *end = strchr(r, '\0') - 1;
+---
+>   char *end = cgc_strchr(r, '\0') - 1;
+86,87c79
+<   // cgc_free(r);
+<   free(r);
+---
+>   cgc_free(r);
+94,105c86,97
+<     char *mad[MAD_SIZE] = {
+<         NULL,
+<         " is ",
+<         "a ",
+<         "symptom ",
+<         "of ",
+<         "the ",
+<         NULL,
+<         " ",
+<         NULL,
+<         " complex."
+<     };
+---
+>   char *mad[MAD_SIZE] = {
+>     NULL,
+>     " is ",
+>     "a ",
+>     "symptom ",
+>     "of ",
+>     "the ",
+>     NULL,
+>     " ",
+>     NULL,
+>     " complex."
+>   };
+107,108c99,100
+<     if (!s)
+<         return -1;
+---
+>   if (!s)
+>     return -1;
+110c102,103
+<     // printf ("pont_cmd. s: %p. \n", s);
+---
+>   list *passed = cgc_split_words(s, 0);
+>   string *resp = cgc_new_string("Hmm, I think that ");
+112,113c105,106
+<     list *passed = cgc_split_words(s, 0);
+<     string *resp = cgc_new_string("Hmm, I think that ");
+---
+>   if (!passed || !resp)
+>     return -1;
+115c108,111
+<     if (!passed || !resp)
+---
+>   for (int i = 0; i < MAD_SIZE; i++) {
+>     if (mad[i] == NULL) {
+>       const DATA e = cgc_random_element(passed);
+>       if (!e)
+117,126c113,115
+< 
+<     for (int i = 0; i < MAD_SIZE; i++) {
+<         if (mad[i] == NULL) {
+<             const DATA e = cgc_random_element(passed);
+<             if (!e)
+<                 return -1;
+<             cgc_append_string(resp, e);
+<         } else {
+<             cgc_append_string(resp, mad[i]);
+<         }
+---
+>       cgc_append_string(resp, e);
+>     } else {
+>       cgc_append_string(resp, mad[i]);
+127a117
+>   }
+129,131c119,121
+<     string *ret = cgc_new_string(resp->d);
+<     if (!ret)
+<         return -1;
+---
+>   string *ret = cgc_new_string(resp->d);
+>   if (!ret)
+>     return -1;
+133,137c123,127
+<     cgc_free_string(resp);
+<     cgc_printf("molly > %s\n", ret->d);
+<     cgc_free_string(ret);
+<     cgc_free_list(passed, 0);
+<     return 0;
+---
+>   cgc_free_string(resp);
+>   cgc_printf("molly > %s\n", ret->d);
+>   cgc_free_string(ret);
+>   cgc_free_list(passed, 0);
+>   return 0;
+303c293
+<     cmd *c = NULL;
+---
+>   cmd *c = NULL;
+305,330c295,303
+<     if (cgc_is_command(s, cmds)) {
+<         // printf ("1---s: %p. \n", s);
+<         c = cgc_get_command(s, cmds);
+<         // printf ("2---s: %p. \n", s);
+<         if (!c)
+<             error(ECMD);
+< 
+<         // if (cgc_strchr(s, ' '))
+<         if (strchr(s, ' '))
+<         {
+<             // printf ("3---s: %p. \n", s);
+<             // s = cgc_strchr(s, ' ') + 1;
+<             s = strchr(s, ' ') + 1;
+<             // printf ("4---s: %p. \n", s);
+<         }
+<         else
+<         {
+<             // printf ("5---s: %p. \n", s);
+<             s = s + cgc_strlen(c->keyword);
+<             // printf ("6---s: %p. \n", s);
+<         }
+< 
+<         // printf ("7---s: %p. \n", s);
+<         c->fp(s);
+<         return 0;
+<     }
+---
+>   if (cgc_is_command(s, cmds)) {
+>     c = cgc_get_command(s, cmds);
+>     if (!c)
+>       error(ECMD);
+> 
+>     if (cgc_strchr(s, ' '))
+>         s = cgc_strchr(s, ' ') + 1;
+>     else
+>         s = s + cgc_strlen(c->keyword);
+332,339c305,307
+<     list *lists = cgc_str_to_wordlists(s);
+<     if (!lists)
+<         return 0;
+< 
+<     list *gm = cgc_gen_msg(lists);
+<     string *res = cgc_wordlist_to_string(gm);
+<     if (res && cgc_will_chat(ctyn))
+<         cgc_printf("%s > %s\n", botname, res->d);
+---
+>     c->fp(s);
+>     return 0;
+>   }
+341c309,311
+<     cgc_crosstalk = res;
+---
+>   list *lists = cgc_str_to_wordlists(s);
+>   if (!lists)
+>     return 0;
+343,344c313,316
+<     if (cgc_insert_wordlists(lists, &cgc_ct) < 0)
+<         return -1;
+---
+>   list *gm = cgc_gen_msg(lists);
+>   string *res = cgc_wordlist_to_string(gm);
+>   if (res && cgc_will_chat(ctyn))
+>     cgc_printf("%s > %s\n", botname, res->d);
+346c318,323
+<     return 0;
+---
+>   cgc_crosstalk = res;
+> 
+>   if (cgc_insert_wordlists(lists, &cgc_ct) < 0)
+>     return -1;
+> 
+>   return 0;
+409,410c386
+<     // buf = cgc_calloc(1, BUF_SIZE + 1);
+<     buf = calloc(1, BUF_SIZE + 1);
+---
+>     buf = cgc_calloc(1, BUF_SIZE + 1);
+418,419c394
+<       // cgc_free(buf);
+<       free(buf);
+---
+>       cgc_free(buf);
+425,426c400
+<       // cgc_free(buf);
+<       free(buf);
+---
+>       cgc_free(buf);
+431,432c405
+<       // cgc_free(buf);
+<       free(buf);
+---
+>       cgc_free(buf);
+438,439c411
+<     // cgc_free(buf);
+<     free(buf);
+---
+>     cgc_free(buf);
+diff -r challenges/Enslavednode_chat/src/string.c challenges-heap-related-orginal/Enslavednode_chat/src/string.c
+24,25d23
+< #include <stdlib.h>
+< 
+35,38c33,35
+<     // string *s = cgc_calloc(1, sizeof(string));
+<     string *s = calloc(1, sizeof(string));
+<     if (!s)
+<         error(EALLOC);
+---
+>   string *s = cgc_calloc(1, sizeof(string));
+>   if (!s)
+>     error(EALLOC);
+40,44c37,40
+<     // s->d = cgc_calloc(1, DEFAULT_S_SZ);
+<     s->d = calloc(1, DEFAULT_S_SZ);
+<     if (!s->d)
+<         error(EALLOC);
+<     s->cap = DEFAULT_S_SZ;
+---
+>   s->d = cgc_calloc(1, DEFAULT_S_SZ);
+>   if (!s->d)
+>     error(EALLOC);
+>   s->cap = DEFAULT_S_SZ;
+46c42
+<     if (d) {
+---
+>   if (d) {
+48,54c44,49
+<         cgc_size_t nz = (cgc_strlen(d) + 1) * 2;
+<         // s->d = cgc_realloc(s->d, nz);
+<         s->d = realloc(s->d, nz);
+<         if (!s->d)
+<             error(EALLOC);
+<         s->d[nz] = '\0';
+<         s->cap = nz;
+---
+>     cgc_size_t nz = (cgc_strlen(d) + 1) * 2;
+>     s->d = cgc_realloc(s->d, nz);
+>     if (!s->d)
+>       error(EALLOC);
+>     s->d[nz] = '\0';
+>     s->cap = nz;
+56,60c51,52
+<         // printf ("d: %p, strlen of d: %d. \n", d, cgc_strlen(d));
+<         cgc_strcpy(s->d, d);
+<     }
+< 
+<     printf ("s: %p, d: %p. \n", s, d);
+---
+>     cgc_strcpy(s->d, d);
+>   }
+62c54
+<     return s;
+---
+>   return s;
+74,75c66
+<     // s->d = cgc_realloc(s->d, s->cap);
+<     s->d = realloc(s->d, s->cap);
+---
+>     s->d = cgc_realloc(s->d, s->cap);
+91,92c82
+<     // s->d = cgc_realloc(s->d, s->cap);
+<     s->d = realloc(s->d, s->cap);
+---
+>     s->d = cgc_realloc(s->d, s->cap);
+144,145c134
+<     // cgc_free(s->d);
+<     free(s->d);
+---
+>     cgc_free(s->d);
+diff -r challenges/Enslavednode_chat/src/tree.c challenges-heap-related-orginal/Enslavednode_chat/src/tree.c
+24,25d23
+< #include <stdlib.h>
+< 
+34,35c32
+<   // tree *new = cgc_calloc(1, sizeof(tree));
+<   tree *new = calloc(1, sizeof(tree));
+---
+>   tree *new = cgc_calloc(1, sizeof(tree));
+diff -r challenges/Enslavednode_chat/src/wl.c challenges-heap-related-orginal/Enslavednode_chat/src/wl.c
+24,25d23
+< #include <stdlib.h>
+< 
+44,45c42
+<   // char *flat = cgc_calloc(1, START_SIZE);
+<   char *flat = calloc(1, START_SIZE);
+---
+>   char *flat = cgc_calloc(1, START_SIZE);
+57,58c54
+<       // flat = cgc_realloc(flat, cur_size);
+<       flat = realloc(flat, cur_size);
+---
+>       flat = cgc_realloc(flat, cur_size);
+90,91c86
+<   // p = cgc_calloc(1, cgc_strlen(line) + 1);
+<   p = calloc(1, cgc_strlen(line) + 1);
+---
+>   p = cgc_calloc(1, cgc_strlen(line) + 1);
+109,110c104
+<     // char *wc = cgc_calloc(1, cgc_strlen(word_start) + 1);
+<     char *wc = calloc(1, cgc_strlen(word_start) + 1);
+---
+>     char *wc = cgc_calloc(1, cgc_strlen(word_start) + 1);
+117,118c111
+<     // char *wc = cgc_calloc(1, cgc_strlen(chain_term) + 1);
+<     char *wc = calloc(1, cgc_strlen(chain_term) + 1);
+---
+>     char *wc = cgc_calloc(1, cgc_strlen(chain_term) + 1);
+123,124c116
+<   // cgc_free(to_free);
+<   free(to_free);
+---
+>   cgc_free(to_free);
+165,166c157
+<   // cgc_free(k);
+<   free(k);
+---
+>   cgc_free(k);
+212,213c203
+<   // char *x = cgc_calloc(1, len + 1);
+<   char *x = calloc(1, len + 1);
+---
+>   char *x = cgc_calloc(1, len + 1);
+221,222c211
+<   // cgc_free(x);
+<   free(x);
+---
+>   cgc_free(x);
+diff -r challenges/FablesReport/src/service.c challenges-heap-related-orginal/FablesReport/src/service.c
+22,23d21
+< #include <stdlib.h>
+< 
+37,38c35
+< 			// new_field = cgc_malloc(sizeof(Field));
+< 			new_field = malloc(sizeof(Field));
+---
+> 			new_field = cgc_malloc(sizeof(Field));
+61,62c58
+< 	// new_field = cgc_malloc(sizeof(Field));
+< 	new_field = malloc(sizeof(Field));
+---
+> 	new_field = cgc_malloc(sizeof(Field));
+169,170c165
+< 				// record = cgc_malloc(sizeof(Record));
+< 				record = malloc(sizeof(Record));
+---
+> 				record = cgc_malloc(sizeof(Record));
+193,194c188
+< 	// record = cgc_malloc(sizeof(Record));
+< 	record = malloc(sizeof(Record));
+---
+> 	record = cgc_malloc(sizeof(Record));
+200,201c194
+< 	// record->data = cgc_malloc(report->record_size*2); 
+< 	record->data = malloc(report->record_size*2); 
+---
+> 	record->data = cgc_malloc(report->record_size*2); 
+206,207c199
+< 	// receive_buf = cgc_malloc(report->record_size*2);
+< 	receive_buf = malloc(report->record_size*2);
+---
+> 	receive_buf = cgc_malloc(report->record_size*2);
+223,224c215
+< 	// cgc_free(receive_buf);
+< 	free(receive_buf);
+---
+> 	cgc_free(receive_buf);
+227,230c218,219
+< 		// cgc_free(record->data);
+< 		free(record->data);
+< 		// cgc_free(record);
+< 		free(record);
+---
+> 		cgc_free(record->data);
+> 		cgc_free(record);
+234,237c223,224
+< 		// cgc_free(record->data);
+< 		free(record->data);
+< 		// cgc_free(record);
+< 		free(record);
+---
+> 		cgc_free(record->data);
+> 		cgc_free(record);
+254,257c241,242
+< 		// cgc_free(record->data);
+< 		free(record->data);
+< 		// cgc_free(record);
+< 		free(record);
+---
+> 		cgc_free(record->data);
+> 		cgc_free(record);
+265,268c250,251
+< 		// cgc_free(record->data);
+< 		free(record->data);
+< 		// cgc_free(record);
+< 		free(record);
+---
+> 		cgc_free(record->data);
+> 		cgc_free(record);
+277,278c260
+< 			// cgc_free(record->data);
+< 			free(record->data);
+---
+> 			cgc_free(record->data);
+280,281c262
+< 			// cgc_free(command);
+< 			free(command);
+---
+> 			cgc_free(command);
+283,284c264
+< 			// cgc_free(record);
+< 			free(record);
+---
+> 			cgc_free(record);
+diff -r challenges/FISHYXML/src/card.c challenges-heap-related-orginal/FISHYXML/src/card.c
+27d26
+< #include <stdlib.h>
+37,38c36
+< 	// c = cgc_calloc(sizeof(struct card));
+< 	c = calloc(1, sizeof(struct card));
+---
+> 	c = cgc_calloc(sizeof(struct card));
+57,58c55
+< 	// cgc_free(c);
+< 	free(c);
+---
+> 	cgc_free(c);
+diff -r challenges/FISHYXML/src/deck.c challenges-heap-related-orginal/FISHYXML/src/deck.c
+27c27
+< #include <stdlib.h>
+---
+> 
+32,33c32
+< 	// d = cgc_calloc(sizeof(struct deck));
+< 	d = calloc(1, sizeof(struct deck));
+---
+> 	d = cgc_calloc(sizeof(struct deck));
+diff -r challenges/FISHYXML/src/fishyxml.c challenges-heap-related-orginal/FISHYXML/src/fishyxml.c
+30,31d29
+< #include <stdlib.h>
+< 
+141,142c139
+< 	// name = cgc_calloc(name_len);
+< 	name = calloc(1, name_len);
+---
+> 	name = cgc_calloc(name_len);
+diff -r challenges/FISHYXML/src/gofish.c challenges-heap-related-orginal/FISHYXML/src/gofish.c
+27d26
+< #include <stdlib.h>
+31,32c30
+< 	// game = cgc_calloc(sizeof(struct game_state));
+< 	game = calloc(1, sizeof(struct game_state));
+---
+> 	game = cgc_calloc(sizeof(struct game_state));
+43,44c41
+< 	// bot = cgc_calloc(4);
+< 	bot = calloc(1, 4);
+---
+> 	bot = cgc_calloc(4);
+diff -r challenges/FISHYXML/src/hand.c challenges-heap-related-orginal/FISHYXML/src/hand.c
+28,29d27
+< #include <stdlib.h>
+< 
+32,33c30
+< 	// h = cgc_calloc(sizeof(struct hand));
+< 	h = calloc(1, sizeof(struct hand));
+---
+> 	h = cgc_calloc(sizeof(struct hand));
+diff -r challenges/FISHYXML/src/player.c challenges-heap-related-orginal/FISHYXML/src/player.c
+29,30d28
+< #include <stdlib.h>
+< 
+34,35c32
+< 	// p = cgc_calloc(sizeof(struct player));
+< 	p = calloc(1, sizeof(struct player));
+---
+> 	p = cgc_calloc(sizeof(struct player));
+diff -r challenges/FISHYXML/src/rxtx.c challenges-heap-related-orginal/FISHYXML/src/rxtx.c
+23,24d22
+< #include <stdlib.h>
+< 
+57,58c55
+< 	// buf = cgc_calloc(bytes_needed);
+< 	buf = calloc(1, bytes_needed);
+---
+> 	buf = cgc_calloc(bytes_needed);
+72,73c69
+< 	// cgc_free(buf);
+< 	free(buf);
+---
+> 	cgc_free(buf);
+96,97c92
+< 	// buf = cgc_calloc(bytes_needed);
+< 	buf = calloc(1, bytes_needed);
+---
+> 	buf = cgc_calloc(bytes_needed);
+122,123c117
+< 	// cgc_free(buf);
+< 	free(buf);
+---
+> 	cgc_free(buf);
+189,190c183
+< 	// r_cards = cgc_calloc(sz);
+< 	r_cards = calloc(1, sz);
+---
+> 	r_cards = cgc_calloc(sz);
+198,199c191
+< 	// cgc_free(r_cards);
+< 	free(r_cards);
+---
+> 	cgc_free(r_cards);
+diff -r challenges/humaninterface/lib/cgc_stdint.h challenges-heap-related-orginal/humaninterface/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/KKVS/cb_1/lib/cgc_stdint.h challenges-heap-related-orginal/KKVS/cb_1/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/KKVS/cb_2/lib/cgc_stdint.h challenges-heap-related-orginal/KKVS/cb_2/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/Minimalistic_Memo_Manager_3M/lib/cgc_stdint.h challenges-heap-related-orginal/Minimalistic_Memo_Manager_3M/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/online_job_application/lib/cgc_stdint.h challenges-heap-related-orginal/online_job_application/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+Only in challenges: README.jq
+diff -r challenges/RRPN/lib/cgc_stdint.h challenges-heap-related-orginal/RRPN/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/Sad_Face_Template_Engine_SFTE/lib/cgc_stdint.h challenges-heap-related-orginal/Sad_Face_Template_Engine_SFTE/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/simplenote/lib/cgc_stdint.h challenges-heap-related-orginal/simplenote/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
+diff -r challenges/university_enrollment/lib/cgc_stdint.h challenges-heap-related-orginal/university_enrollment/lib/cgc_stdint.h
+14,15c14,15
+< typedef long intptr_t;
+< typedef unsigned long uintptr_t;
+---
+> typedef int intptr_t;
+> typedef unsigned int uintptr_t;
