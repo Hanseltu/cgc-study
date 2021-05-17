@@ -1,10 +1,10 @@
 
 
 
-| No  | Challenges       |     Generic class of vulnerability    |  Results(5 mins run) |
+| No  | Challenges       |     Generic class of vulnerability    |  Results(2 hours) |
 | :-----: | :-------------: |:-------------:| :-----:|
 | 1       | [AIS-Lite](https://github.com/Hanseltu/cgc-study/tree/main/challenges/AIS-Lite)<br>(NRFIN)        |    Classic heap buffer overflow <br>  Null pointer dereference <br>  Improper array bounds checking <br> Access memory beyond buffer            |   KLEE: HaltTimer invoke   |
-| 2     | [anagram_game](https://github.com/Hanseltu/cgc-study/tree/main/challenges/anagram_game) <br> (KPRCA-00032)   |      Heap-based Buffer Overflow <br>  Improper Handling of Exceptional Conditions       |      KLEE: WARNING ONCE: Large alloc: 2147483672 bytes.  KLEE may run out of memory <br> KLEE: HaltTimer invoked KLEE: halting execution, dumping remaining states |
+| 2     | [anagram_game](https://github.com/Hanseltu/cgc-study/tree/main/challenges/anagram_game) <br> (KPRCA-00032)   |      Heap-based Buffer Overflow <br>  Improper Handling of Exceptional Conditions       |     KLEE: ERROR: challenges/anagram_game/src/io.c:76: overshift error <br> KLEE: ERROR: challenges/anagram_game/src/main.c:62: concretized symbolic size <br> KLEE: ERROR: challenges/anagram_game/src/io.c:114: concretized symbolic size|
 | 3 | [Audio_Visualizer](https://github.com/Hanseltu/cgc-study/tree/main/challenges/Audio_Visualizer) <br> (KPRCA_00010)|Heap buffer overflow | KLEE: HaltTimer invoked|
 | 4      | [BudgIT](https://github.com/Hanseltu/cgc-study/tree/main/challenges/BudgIT)<br>(NRFIN)   |      Heap-based Buffer Overflow <br>Out-of-bounds Read <br>Incorrect Calculation of Buffer Size  <br>Off-by-one Error <br>Use of Pointer Subtraction <br> Out-of-bounds Write        |     KLEE: HaltTimer invoked   |
 | 5      | [CableGrind](https://github.com/Hanseltu/cgc-study/tree/main/challenges/CableGrind)<br>(NRFIN)|   Incorrect Calculation of Buffer Size <br> Stack-based Buffer Overflow |   KLEE: HaltTimer invoked     |
