@@ -1,0 +1,40 @@
+ +++ Debug: in main function, No.0th prg_argc = online_job_application.bc
+ +++ Debug: in main function, No.1th prg_argc = --sym-stdin
+ +++ Debug: in main function, No.2th prg_argc = 128
+ +++ Debug: in main function, No.3th prg_argc = --sym-stdout
+KLEE-REPLAY: NOTE: Test file: build64-heap-12h/challenges/online_job_application/klee-output-online_job_application/test000003.ktest
+KLEE-REPLAY: NOTE: Arguments: "build64/challenges/online_job_application/online_job_application" 
+KLEE-REPLAY: NOTE: Storing KLEE replay files in /tmp/klee-replay-MN1KJ7
+KLEE-REPLAY: NOTE: Creating file /tmp/klee-replay-MN1KJ7/fd0 of length 128
+KLEE-REPLAY: NOTE: Creating file /tmp/klee-replay-MN1KJ7/fd1 of length 1024
+KLEE-REPLAY: WARNING: check_file stdin: dev mismatch: 2065 vs 2050
+KLEE-REPLAY: WARNING: check_file stdout: dev mismatch: 2065 vs 2050
+ +++ Debug: in main function before call run_monitored, No.0th prg_argv = build64/challenges/online_job_application/online_job_application
+   +++ Debug: run_monitored function executed!
+   +++ Debug: executable = /media/haoxin/SeagateData/haoxin-data/smu-research/cgc/cgc-env-64/cb-multios/build64/challenges/online_job_application/online_job_application
+   +++ Debug: argc = 1
+   +++ Debug: the 0th argv = build64/challenges/online_job_application/online_job_application
+   +++ Debug: repaly not in rootdir ? (null)
+   +++ Debug: execv parameter executable =  /media/haoxin/SeagateData/haoxin-data/smu-research/cgc/cgc-env-64/cb-multios/build64/challenges/online_job_application/online_job_application
+   +++ Debug: execv parameter argv =  build64/challenges/online_job_application/online_job_application
+In strcpy.c : Execute line 30 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 33 ?
+In strcpy.c : Execute line 35 ?
+In strcpy.c : Execute line 30 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 33 ?
+In strcpy.c : Execute line 35 ?
+In strcpy.c : Execute line 30 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 32 ?
+In strcpy.c : Execute line 33 ?
+In strcpy.c : Execute line 35 ?

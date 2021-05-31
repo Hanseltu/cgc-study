@@ -1,0 +1,22 @@
+ +++ Debug: in main function, No.0th prg_argc = SCUBA_Dive_Logging.bc
+ +++ Debug: in main function, No.1th prg_argc = --sym-stdin
+ +++ Debug: in main function, No.2th prg_argc = 128
+ +++ Debug: in main function, No.3th prg_argc = --sym-stdout
+KLEE-REPLAY: NOTE: Test file: build64-heap-12h/challenges/SCUBA_Dive_Logging/klee-output-SCUBA_Dive_Logging/test000006.ktest
+KLEE-REPLAY: NOTE: Arguments: "build64/challenges/SCUBA_Dive_Logging/SCUBA_Dive_Logging" 
+KLEE-REPLAY: NOTE: Storing KLEE replay files in /tmp/klee-replay-omaUc3
+KLEE-REPLAY: NOTE: Creating file /tmp/klee-replay-omaUc3/fd0 of length 128
+KLEE-REPLAY: NOTE: Creating file /tmp/klee-replay-omaUc3/fd1 of length 1024
+KLEE-REPLAY: WARNING: check_file stdin: dev mismatch: 2065 vs 2050
+KLEE-REPLAY: WARNING: check_file stdout: dev mismatch: 2065 vs 2050
+ +++ Debug: in main function before call run_monitored, No.0th prg_argv = build64/challenges/SCUBA_Dive_Logging/SCUBA_Dive_Logging
+   +++ Debug: run_monitored function executed!
+   +++ Debug: executable = /media/haoxin/SeagateData/haoxin-data/smu-research/cgc/cgc-env-64/cb-multios/build64/challenges/SCUBA_Dive_Logging/SCUBA_Dive_Logging
+   +++ Debug: argc = 1
+   +++ Debug: the 0th argv = build64/challenges/SCUBA_Dive_Logging/SCUBA_Dive_Logging
+   +++ Debug: repaly not in rootdir ? (null)
+   +++ Debug: execv parameter executable =  /media/haoxin/SeagateData/haoxin-data/smu-research/cgc/cgc-env-64/cb-multios/build64/challenges/SCUBA_Dive_Logging/SCUBA_Dive_Logging
+   +++ Debug: execv parameter argv =  build64/challenges/SCUBA_Dive_Logging/SCUBA_Dive_Logging
+In download_dive.c : Execute line 203 ? 
+KLEE-REPLAY: NOTE: EXIT STATUS: CRASHED signal 11 (0 seconds)
+KLEE-REPLAY: NOTE: removing /tmp/klee-replay-omaUc3
